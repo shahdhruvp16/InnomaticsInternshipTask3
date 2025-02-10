@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grading System</title>
+    <style>
+        body {
+            background: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        #gradeResult {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 20px;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Grading System</h2>
+        <input type="number" id="marks" placeholder="Enter Marks">
+        <input type="number" id="attendance" placeholder="Enter Attendance (%)">
+        <button onclick="calculateGrade()">Calculate Grade</button>
+        <p id="gradeResult"></p>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            let marks = parseFloat(document.getElementById("marks").value);
+            let attendance = parseFloat(document.getElementById("attendance").value);
+
+            if (attendance > 90) marks += 5;  // Extra credit
+
+            let grade = "F";
+            if (marks >= 90) grade = "A";
+            else if (marks >= 80) grade = "B";
+            else if (marks >= 70) grade = "C";
+            else if (marks >= 60) grade = "D";
+
+            let result = `📜 Final Grade: <span style="color:#f1c40f;">${grade}</span>`;
+            document.getElementById("gradeResult").innerHTML = result;
+        }
+    </script>
+</body>
+</html>

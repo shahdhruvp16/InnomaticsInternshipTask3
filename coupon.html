@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Coupon Redemption</title>
+    <style>
+        body { background: #fffbec; text-align: center; font-family: Arial; }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #d32f2f; }
+        #finalPrice { font-weight: bold; font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>E-commerce Coupon Redemption</h2>
+        <input type="number" id="orderAmount" placeholder="Enter Order Amount">
+        <select id="coupon">
+            <option value="None">No Coupon</option>
+            <option value="DISCOUNT10">DISCOUNT10 (10% off, $500+)</option>
+            <option value="FREESHIP">FREESHIP (Free shipping, $200+)</option>
+        </select>
+        <button onclick="applyCoupon()">Apply Coupon</button>
+        <p id="finalPrice"></p>
+    </div>
+
+    <script>
+        function applyCoupon() {
+            let amount = parseFloat(document.getElementById("orderAmount").value);
+            let coupon = document.getElementById("coupon").value;
+            let finalAmount = amount;
+
+            if (coupon === "DISCOUNT10" && amount > 500) finalAmount *= 0.9;
+            else if (coupon === "FREESHIP" && amount > 200) finalAmount -= 10; // Free shipping equivalent
+
+            document.getElementById("finalPrice").innerHTML = `💰 Final Price: $${finalAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

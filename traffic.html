@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Light</title>
+    <style>
+        body {
+            background: #282828;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .traffic-light {
+            width: 80px;
+            height: 200px;
+            background: black;
+            margin: auto;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: gray;
+        }
+        .green { background: green; }
+    </style>
+</head>
+<body>
+    <h2>Smart Traffic Light</h2>
+    <div class="traffic-light">
+        <div class="light" id="red"></div>
+        <div class="light" id="yellow"></div>
+        <div class="light green" id="green"></div>
+    </div>
+    <br>
+    <select id="trafficDensity">
+        <option value="Heavy">Heavy Traffic</option>
+        <option value="Moderate">Moderate Traffic</option>
+        <option value="Light">Light Traffic</option>
+    </select>
+    <button onclick="changeSignal()">Start Signal</button>
+    <p id="timeDisplay"></p>
+
+    <script>
+        function changeSignal() {
+            let density = document.getElementById("trafficDensity").value;
+            let time = density === "Heavy" ? 60 : density === "Moderate" ? 40 : 20;
+
+            document.getElementById("timeDisplay").innerHTML = `🟢 Green Light: ${time} sec`;
+        }
+    </script>
+</body>
+</html>

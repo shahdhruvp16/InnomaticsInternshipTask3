@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+    <style>
+        body { 
+            background: #eef2ff; 
+            text-align: center; 
+            font-family: Arial; 
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 320px;
+            margin: auto;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #388E3C; }
+        #result { 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin-top: 20px; 
+            color: #333; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Electricity Bill Calculator ⚡</h2>
+        <input type="number" id="units" placeholder="Enter units consumed">
+        <select id="timeOfDay">
+            <option value="normal">Normal Hours (8 AM - 8 PM)</option>
+            <option value="peak">Peak Hours (8 PM - 8 AM)</option>
+        </select>
+        <button onclick="calculateBill()">Calculate Bill</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateBill() {
+            let units = parseInt(document.getElementById("units").value);
+            let timeOfDay = document.getElementById("timeOfDay").value;
+            let rate = 0;
+
+            if (units < 100) rate = 5;
+            else if (units <= 300) rate = 4;
+            else rate = 3;
+
+            let bill = units * rate;
+            if (timeOfDay === "peak") bill *= 1.1;  // Peak hour surcharge
+
+            document.getElementById("result").innerHTML = `💰 Total Bill: $${bill.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
